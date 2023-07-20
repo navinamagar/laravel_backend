@@ -19,12 +19,21 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-            
+use App\Http\Controllers\GalleryController; 
+use App\Http\Controllers\ProductController;          
 
 // Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/addoption', [UserController::class, 'addoption']);
+
+Route::get('/Gallery', [GalleryController::class, 'getAddGallery'])->name('getAddGallery');
+Route::POST('/addGallery', [GalleryController::class, 'PostAddGallery'])->name('PostAddGallery1');
+
 Route::get('/category', [CategoryController::class, 'getAddCategory'])->name('getAddCategory');
 Route::POST('/addcategory', [CategoryController::class, 'PostAddCategory'])->name('PostAddCategory1');
+
+Route::get('/Product', [ProductController::class, 'getAddProduct'])->name('getAddProduct');
+Route::POST('/addproduct',[ProductController::class, 'PostAddProduct'])->name('PostAddProduct');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');

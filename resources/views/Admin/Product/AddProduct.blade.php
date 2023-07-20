@@ -1,9 +1,9 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
 
-    <x-navbars.sidebar activePage="Categories"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="product"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='Category'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='Product'></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
@@ -16,7 +16,7 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h5 class="mb-1">
-                               Add Category
+                               Add Product
                             </h5>
 
                         </div>
@@ -48,39 +48,60 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method='POST' enctype="multipart/form-data" action="{{route('PostAddCategory1')}}">
+                        <form method='POST' enctype="multipart/form-data" action="{{route('PostAddProduct')}}">
                             @csrf
                             <div class="row">
                                 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Title</label>
+                                    <label class="form-label">Catagory</label>
+                                    <input type="text" name="catagory" class="form-control border border-2 p-2">
+                                    @error('catagory')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Product title</label>
                                     <input type="text" name="title" class="form-control border border-2 p-2">
                                     @error('title')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
-                                
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Photo</label>
-                                    <input type="file" name="photo" class="form-control border border-2 p-2">
-                                    @error('photo')
+                                    <label class="form-label">Product cost</label>
+                                    <input type="text" name="cost" class="form-control border border-2 p-2">
+                                    @error('cost')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                                 </div>
-                               
-                                <div class="mb-3 col-md-12">
-                                    <label class="form-label">Detail</label>
-                                    <textarea type="text" name="detail" class="form-control border border-2 p-2"></textarea> 
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Product detail</label>
+                                    <textarea type="text" name="detail" class="form-control border border-2 p-2"> </textarea>
                                     @error('detail')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                    @enderror
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Product image</label>
+                                    <input type="file" name="image" class="form-control border border-2 p-2">
+                                    @error('image')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>
+                                
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Product status
+                                    <input type="radio" id="show" name="status" value="show">
+                                    <label for="show"> show</lebel>
+                                    <input type="radio" id="hide" name="status" value="hide">
+                                    <label for="hide">hide</lebel>
 
-                                
-                                
-                            
+                                    </label>
+                                    @error('status')
+                                <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                                </div>                      -->
                             </div>
-                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
+                            <button type="submit" class="btn bg-gradient-dark">Save</button>
                         </form>
 
                     </div>

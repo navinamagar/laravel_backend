@@ -19,11 +19,23 @@ class CategoryController extends Controller
         // dd($request->title);
         $title= $request->title;
         $photo= $request->photo;
+        // dd($photo);
         $detail= $request->detail;
-        $go= new Category;
-        $go->title=$title;
-        $go->photo=$photo;
-        $go->detail=$detail;
-        $go->save();
+
+        if($photo){     
+        // generate unique name for photo
+        $time=md5(time()).'.'.$photo->getClientOriginalExtension();
+        // to move photo into folder 
+        $photo->move('site/uploads/category/',$time);
+        // dd($time);
+        }
+        else{
+            $time=Null;
+        }
+        $categories= new category; 
+        $categories->title=$title;
+        $categories->photo=$time;
+        $categories->detail=$detail;
+        $categories->save();
     }
 }
