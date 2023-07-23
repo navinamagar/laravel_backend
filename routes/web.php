@@ -20,7 +20,8 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController; 
-use App\Http\Controllers\ProductController;          
+use App\Http\Controllers\ProductController;      
+use App\Http\Controllers\SocialMediasController;     
 
 // Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/addoption', [UserController::class, 'addoption']);
@@ -29,7 +30,11 @@ Route::get('/Gallery', [GalleryController::class, 'getAddGallery'])->name('getAd
 Route::POST('/addGallery', [GalleryController::class, 'PostAddGallery'])->name('PostAddGallery1');
 
 Route::get('/category', [CategoryController::class, 'getAddCategory'])->name('getAddCategory');
-Route::POST('/addcategory', [CategoryController::class, 'PostAddCategory'])->name('PostAddCategory1');
+Route::POST('/addcategory', [CategoryController::class, 'PostAddCategory'])->name('PostAddCategory1');//to put it in database
+Route::get('/ManageCategory', [CategoryController::class,'getManageCategory'])->name('getManageCategory'); //to pull it form database
+
+Route::get('/SocialMedia', [SocialMediasController::class,'getSocialMedia'])->name('getSocialMedia');
+Route::post('/SocialMedia', [SocialMediasController::class,'PostSocialMedia'])->name('PostSocialMedia');
 
 Route::get('/Product', [ProductController::class, 'getAddProduct'])->name('getAddProduct');
 Route::POST('/addproduct',[ProductController::class, 'PostAddProduct'])->name('PostAddProduct');

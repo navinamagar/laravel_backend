@@ -1,9 +1,9 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
 
-    <x-navbars.sidebar activePage="Categories"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="SocialMedias"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage='Category'></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage='SocialMedias'></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
@@ -16,7 +16,7 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h5 class="mb-1">
-                               Add Category
+                               Add SocialMedias
                             </h5>
 
                         </div>
@@ -48,30 +48,30 @@
                                     </div>
                                 </div>
                         @endif
-                        <form method='POST' enctype="multipart/form-data" action="{{route('PostAddCategory1')}}">
+                        <form method='POST' enctype="multipart/form-data" action="{{route('PostSocialMedia')}}">
                             @csrf
                             <div class="row">
                                 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Title</label>
-                                    <input type="text" name="title" class="form-control border border-2 p-2"required>
-                                    @error('title')
+                                    <label class="form-label">Social Media Name</label>
+                                    <input type="text" name="SocialMediaName" class="form-control border border-2 p-2"required>
+                                    @error('SocialMediaName')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
-                                </div>
+                                </div><br>
                                 
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Photo</label>
-                                    <input type="file" name="photo" class="form-control border border-2 p-2">
-                                    @error('photo')
+                                    <label class="form-label">Social Media Link</label>
+                                    <input type="url" name="SocialMediaLink" class="form-control border border-2 p-2">
+                                    @error('SocialMediaLink')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
-                                </div>
+                                </div><br>
                                
                                 <div class="mb-3 col-md-12">
-                                    <label class="form-label">Detail</label>
-                                    <textarea type="text" name="detail" class="form-control border border-2 p-2"required></textarea> 
-                                    @error('detail')
+                                    <label class="form-label">Social Media Icon</label>
+                                    <input type="file"accept=".png" name="SocialMediaIcon" class="form-control border border-2 p-2"required>
+                                    @error('SocialMediaIcon')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
                                 </div>
@@ -80,7 +80,7 @@
                                 
                             
                             </div>
-                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
+                            <button type="submit" class="btn bg-gradient-dark">ADD</button>
                         </form>
 
                     </div>

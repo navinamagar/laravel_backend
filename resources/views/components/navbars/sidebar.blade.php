@@ -57,6 +57,24 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'Manage_Category' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{route('getManageCategory')}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Manage Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'SocialMedias' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{route('getSocialMedia')}}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Social Media</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'Galleries' ? ' active bg-gradient-primary' : '' }} "
                     href="{{route('getAddGallery')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

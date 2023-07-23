@@ -38,4 +38,17 @@ class CategoryController extends Controller
         $categories->detail=$detail;
         $categories->save();
     }
+
+    public function getManageCategory()
+    {
+
+        // dd('Hello');
+        // return view('admin.category.manage',['categories'=> category::all()]);
+  return view('admin.category.manage',['categories'=> category::paginate(1)]);
+    }
+
+    // public function index()
+    // {
+    //     return view('admin.Category.manage',['categories'=> Category::all()]);
+    // }
 }
