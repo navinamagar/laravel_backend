@@ -56,10 +56,15 @@
                                                         class="text-secondary text-xs font-weight-bold">{{$category->updated_at}}</span>
                                                 </td>
                                                 <td class="align-middle">
-                                                    <a href="javascript:;"
+                                                    <a href="{{route('getEditCategory',$category->id)}}"
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-toggle="tooltip" data-original-title="Edit user">
                                                         Edit
+                                                    </a>|
+                                                    <a href="{{route('getDeleteCategory',$category->id)}}"
+                                                        class="text-secondary font-weight-bold text-xs"
+                                                        data-toggle="tooltip" data-original-title="Delete user">
+                                                        Delete
                                                     </a>
                                                 </td>
                                             </tr>

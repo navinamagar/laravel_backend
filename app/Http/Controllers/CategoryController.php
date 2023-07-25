@@ -32,7 +32,7 @@ class CategoryController extends Controller
         else{
             $time=Null;
         }
-        $categories= new category; 
+        $categories= new Category; 
         $categories->title=$title;
         $categories->photo=$time;
         $categories->detail=$detail;
@@ -44,7 +44,22 @@ class CategoryController extends Controller
 
         // dd('Hello');
         // return view('admin.category.manage',['categories'=> category::all()]);
-  return view('admin.category.manage',['categories'=> category::paginate(1)]);
+  return view('admin.category.manage',['categories'=> Category::paginate(15)]);
+    }
+
+    public function getDeleteCategory(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('getManageCategory');
+    }
+
+    public function getEditCategory(Category $category)
+    {
+        $data=[
+            'category'=>$category
+        ];
+        return view('admin.category.edit',$data);
+        
     }
 
     // public function index()
