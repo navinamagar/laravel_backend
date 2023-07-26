@@ -33,7 +33,9 @@ Route::get('/category', [CategoryController::class, 'getAddCategory'])->name('ge
 Route::POST('/addcategory', [CategoryController::class, 'PostAddCategory'])->name('PostAddCategory1');//to put it in database
 Route::get('/ManageCategory', [CategoryController::class,'getManageCategory'])->name('getManageCategory'); //to pull it form database
 Route::get('/Delete/Category/{category}', [CategoryController::class,'getDeleteCategory'])->name('getDeleteCategory');
+
 Route::get('/Edit/Category/{category}', [CategoryController::class,'getEditCategory'])->name('getEditCategory');
+Route::POST('/category/edit/{categories}',[CategoryController::class,'Posteditcategory'])->name('Posteditcategory');
 
 Route::get('/SocialMedia', [SocialMediasController::class,'getSocialMedia'])->name('getSocialMedia');
 Route::post('/SocialMedia', [SocialMediasController::class,'PostSocialMedia'])->name('PostSocialMedia');

@@ -62,8 +62,30 @@ class CategoryController extends Controller
         
     }
 
+    public function postEditCategory(Request $request,Category $categories)
+    {
+        $photo= $request->file('photo');
+
+        if($photo){     
+        // generate unique name for photo
+        $time=md5(time()).'.'.$photo->getClientOriginalExtension();
+        // to move photo into folder 
+        $photo->move('site/uploads/category/',$time);
+        // dd($time);
+        $categories->title=$request->input('title');
+        $categories->detail=$request->input('detail');
+        $categories->photo=$time;
+        $categories->save();
+        }
+        else{
+            $categories->title=$request->input('title');
+            $categories->detail=$request->input('detail');
+            $categories->save();
+    }
+    return redirect()->route('getManageCategory');
+
     // public function index()
     // {
     //     return view('admin.Category.manage',['categories'=> Category::all()]);
-    // }
+ }
 }
