@@ -37,6 +37,7 @@ class CategoryController extends Controller
         $categories->photo=$time;
         $categories->detail=$detail;
         $categories->save();
+        return redirect()->route('getManageCategory')->with('success','category added successfully');
     }
 
     public function getManageCategory()

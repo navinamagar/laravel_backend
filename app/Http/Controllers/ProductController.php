@@ -37,5 +37,49 @@ class ProductController extends Controller
         $products->status=$status;
         $products->image=$time;
         $products->save();
-    }
+    
+}
+
+public function getProductTable()
+{
+    return view ('Admin.Product.ProductTable',['products'=> product::paginate(15)]);
+}
+
+public function getDeleteProduct(product $product)
+{
+    $product->delete();
+    return redirect()->route('getProductTable');
+}
+
+public function getEditProduct(product $product)
+{
+    $data=['product'=> $product];
+    return view ('Admin.Product.EditProduct',$data);
+}
+
+public function postEditProduct (Request $request,Product $product)
+{
+    $photo= $request->file('image');
+   
+
+        if($photo){   
+            $time=md5(time()).'.'.$photo->getClientOriginalExtension();
+            $photo->move('site/uploads/product/',$time);
+
+            $product->catagory=$request->input('catagory');
+            $product->title=$request->input('title');
+            $product->detail=$request->input('detail');
+            $product->cost=$request->input('cost');
+            $product->image=$time;
+            $product->save();
+            }
+            else{
+                $product->catagory=$request->input('catagory');
+                $product->title=$request->input('title');
+                $product->detail=$request->input('detail');
+                $product->cost=$request->input('cost');
+                $product->save();
+        }
+        return redirect()->route('getProductTable');
+}
 }

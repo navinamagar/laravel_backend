@@ -25,6 +25,8 @@
     <title>
         Material Dashboard 2 by Creative Tim & UPDIVISION
     </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -61,5 +63,16 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('assets') }}/js/material-dashboard.min.js?v=3.0.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script>
+      $(document).ready(function() {
+          toastr.options.timeOut = 10000;
+          @if(Session::has('error'))
+              toastr.error('{{ Session::get('error') }}');
+          @elseif(Session::has('success'))
+              toastr.success('{{ Session::get('success') }}');
+          @endif
+      });
+  </script>
 </body>
 </html>

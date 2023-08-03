@@ -32,4 +32,9 @@ class GalleryController extends Controller
     $gallery->photo=$time;
     $gallery->save();
 }
+
+public function getManageGallery()
+{
+    return view('Admin.Gallery.Manage');
+}
 }
