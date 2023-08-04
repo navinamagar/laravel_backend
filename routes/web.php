@@ -27,6 +27,7 @@ use App\Http\Controllers\SiteController;
 Route::get('/', [SiteController::class, 'getHome'])->name('getHome');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
+Route::get('/checkout', [SiteController::class,'getCheckOut'])->name('getCheckOut');
 Route::get('/addoption', [UserController::class, 'addoption']);
 
 Route::get('/Gallery', [GalleryController::class, 'getAddGallery'])->name('getAddGallery');

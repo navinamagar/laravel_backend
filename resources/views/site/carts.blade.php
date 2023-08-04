@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="" class="btn btn-primary">Checkout</a>
+                    <a href="{{route('getCheckOut')}}" class="btn btn-primary">Checkout</a>
                 </div>
             </div>
         </div>

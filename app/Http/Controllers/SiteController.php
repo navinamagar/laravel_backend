@@ -56,4 +56,10 @@ class SiteController extends Controller
         return redirect()->route('getCart');
         
     }
+
+
+    public function getCheckOut()
+    {
+        return view ('site.checkout');
+    }
 }
