@@ -1,6 +1,6 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
 
-    <x-navbars.sidebar activePage="product"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="Product"></x-navbars.sidebar>
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage='Product'></x-navbars.navs.auth>
@@ -99,7 +99,7 @@
                                     @error('status')
                                 <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
-                                </div>                      -->
+                                </div>                      
                             </div>
                             <button type="submit" class="btn bg-gradient-dark">Save</button>
                         </form>

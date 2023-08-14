@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ShippingCharge;
 use Session;
 
 class SiteController extends Controller
@@ -60,6 +61,9 @@ class SiteController extends Controller
 
     public function getCheckOut()
     {
-        return view ('site.checkout');
+        $data =[
+            'shippings' => ShippingCharge::where('Status', 'show')->get()
+        ];
+        return view ('site.checkout', $data);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\ShippingCharge;
 
 class ProductController extends Controller
 {
@@ -81,5 +82,25 @@ public function postEditProduct (Request $request,Product $product)
                 $product->save();
         }
         return redirect()->route('getProductTable');
+}
+
+public function getAddShipping()
+{
+    return view ('Admin.Shipping.AddShipping');
+}
+
+public function PostAddShipping (Request $request)
+{
+    //($request->status);
+$state=$request->state;
+$charge= $request->charge;
+$status=$request->status;
+
+$shippings= new ShippingCharge;
+$shippings->State=$state;
+$shippings->Charge=$charge;
+$shippings->Status=$status;
+$shippings->save();
+return redirect()->route('getAddShipping');
 }
 }

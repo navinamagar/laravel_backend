@@ -51,6 +51,9 @@ Route::get('/Product/Delete/{product}',[ProductController::class,'getDeleteProdu
 Route::get('/Product/Edit/{product}',[ProductController::class,'getEditProduct'])->name('getEditProduct');
 Route::post('/Edit/Product/{product}',[ProductController::class,'postEditProduct'])->name('postEditProduct');
 
+Route::get('/shipping', [ProductController::class, 'getAddShipping'])->name('getAddShipping');
+Route::post('/addShipping',[ProductController::class, 'PostAddShipping'])->name('PostAddShipping');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
