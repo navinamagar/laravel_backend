@@ -66,4 +66,15 @@ class SiteController extends Controller
         ];
         return view ('site.checkout', $data);
     }
+    public function postAjax(Request $request){
+        $shppingkoid = $request->get('shipping');
+        //$shippinginfo = ShippingCharge::where('id', $shippingkoid)->limit(1)->first();
+        $shippinginfo = ShippingCharge::find($shppingkoid);
+        $code = Session::get('cartcode');
+        //dd($code);
+        $totalamount = Cart::where('code', $code)->sum('totalcost');
+        $grandtotal = $shippinginfo->Charge+$totalamount;
+        dd($totalamount, $grandtotal);
+
+    }
 }

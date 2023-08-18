@@ -33,10 +33,10 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1" >Contact Number</label>
-                      <select name="shipping" id="shipping" class="form-control">
+                      <select name="shipping" id="shipping1" class="form-control">
                         <option value="">Select Your State</option>
                         @foreach($shippings as $shipping)
-                          <option value="{{$shipping->Charge}}" class="shipping1">{{$shipping->State}} @ NPR {{$shipping->Charge}}</option>
+                          <option value="{{$shipping->id}}">{{$shipping->State}} @ NPR {{$shipping->Charge}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -57,6 +57,8 @@
                 <ul>
                     <li><input type="radio" name="paymentmethod"> Esewa</li>
                     <li><input type="radio" name="paymentmethod"> Cash on Delivery</li>
+                    
+                    
 
                 </ul>
                 <hr>
@@ -67,14 +69,24 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script>
-      $('.shipping1').change(function() {
-        var datavalue = $(this).val();
-        var datatext = $(this).text();
-        alert(datatext);
+     
+      $('#shipping1').change(function() {
+        var shipping = $(this).val();
+        $.ajax({
+           type:'POST',
+           url:"{{ route('postAjax') }}",
+           data:{
+            "_token": "{{csrf_token()}}",
+            shipping:shipping
+           
+          },
+           success:function(data){
+              alert(data.success);
+           }
+        });
+        
+        
       });
-      // var x = 1;
-      // var y = 2;
-      // var z = x+y;
-      // alert(z);
+      
     </script>
 @stop

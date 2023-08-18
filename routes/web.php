@@ -61,6 +61,7 @@ Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest'
 Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
+Route::post('/ajax/abc',[ SiteController::class, 'postAjax'])->name('postAjax');
 Route::get('verify', function () {
 	return view('sessions.password.verify');
 })->middleware('guest')->name('verify'); 
