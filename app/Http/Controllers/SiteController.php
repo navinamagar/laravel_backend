@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\ShippingCharge;
+use App\Models\Order;
 use Session;
 
 class SiteController extends Controller
@@ -62,7 +63,9 @@ class SiteController extends Controller
     public function getCheckOut()
     {
         $data =[
-            'shippings' => ShippingCharge::where('Status', 'show')->get()
+            'shippings' => ShippingCharge::where('Status', 'show')->get(),
+            'carts' => Cart::where('code', Session::get('cartcode'))->get(),
+            'subtotal' => Cart::where('code', Session::get('cartcode'))->sum('totalcost')
         ];
         return view ('site.checkout', $data);
     }
@@ -70,11 +73,39 @@ class SiteController extends Controller
         $shppingkoid = $request->get('shipping');
         //$shippinginfo = ShippingCharge::where('id', $shippingkoid)->limit(1)->first();
         $shippinginfo = ShippingCharge::find($shppingkoid);
+        
         $code = Session::get('cartcode');
         //dd($code);
         $totalamount = Cart::where('code', $code)->sum('totalcost');
         $grandtotal = $shippinginfo->Charge+$totalamount;
-        dd($totalamount, $grandtotal);
+        return response(['totalamount' => $totalamount, 'grandtotal' => $grandtotal, 'shippingcost'=> $shippinginfo->Charge]);
 
     }
+
+    public function postAddOrder(Request $request)
+    {
+        $cartcode=$request->cartcode;
+        $name=$request->name;
+        $address=$request->address;
+        $email=$request->email;
+        $number=$request->phone;
+        $area_id=$request->shipping;
+        $payment_type=$request->paymentmethod;
+        // $product_cost
+        $shipping_cost=$request->shippingcharge;
+        $grand_total=$reuqest->grandtotal;
+        // $payment_status
+        $details= new order;
+
+        $details->cartcode=$cartcode;
+        $details->name=$name;
+        $details->address=$address;
+        $details->email=$email;
+        $details->number=$number;
+        $details->area_id=$area_id;
+        $details->paymenttype=$payment_type;
+        $details->shippingcost=$shipping_cost;
+        $details->grandtotal=$grand_total;
+        $details->save();
+}
 }

@@ -28,6 +28,10 @@ Route::get('/', [SiteController::class, 'getHome'])->name('getHome');
 Route::get('/cart/{product}', [SiteController::class, 'getAddCart'])->name('getAddCart');
 Route::get('/carts', [SiteController::class, 'getCart'])->name('getCart');
 Route::get('/checkout', [SiteController::class,'getCheckOut'])->name('getCheckOut');
+Route::post('/order', [SiteController::class, 'postAddOrder'])->name('postAddOrder');
+
+
+
 Route::get('/addoption', [UserController::class, 'addoption']);
 
 Route::get('/Gallery', [GalleryController::class, 'getAddGallery'])->name('getAddGallery');
@@ -53,6 +57,7 @@ Route::post('/Edit/Product/{product}',[ProductController::class,'postEditProduct
 
 Route::get('/shipping', [ProductController::class, 'getAddShipping'])->name('getAddShipping');
 Route::post('/addShipping',[ProductController::class, 'PostAddShipping'])->name('PostAddShipping');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
