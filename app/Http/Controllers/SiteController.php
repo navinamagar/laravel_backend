@@ -84,17 +84,21 @@ class SiteController extends Controller
 
     public function postAddOrder(Request $request)
     {
-        $cartcode=$request->cartcode;
+        $cartcode= Session::get('cartcode');
         $name=$request->name;
         $address=$request->address;
         $email=$request->email;
         $number=$request->phone;
         $area_id=$request->shipping;
         $payment_type=$request->paymentmethod;
-        // $product_cost
-        $shipping_cost=$request->shippingcharge;
-        $grand_total=$reuqest->grandtotal;
-        // $payment_status
+        $product_cost = Cart::where('code', $cartcode)->sum('totalcost');
+        
+        $shippinginfo = ShippingCharge::find($area_id);
+       
+        $shipping_cost= $shippinginfo->Charge;
+        $grand_total= $product_cost+$shipping_cost;
+       
+
         $details= new order;
 
         $details->cartcode=$cartcode;
@@ -104,8 +108,11 @@ class SiteController extends Controller
         $details->number=$number;
         $details->area_id=$area_id;
         $details->paymenttype=$payment_type;
+        $details->productcost=$shippinginfo;
         $details->shippingcost=$shipping_cost;
         $details->grandtotal=$grand_total;
         $details->save();
+
+        return view('getCart');
 }
 }

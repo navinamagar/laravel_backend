@@ -40,7 +40,7 @@
                         @endforeach
                       </select>
                     </div>
-                  </form>
+                  
             </div>
             <div class="col-md-4">
                 <h5><b>Your Order</b></h5>
@@ -70,6 +70,7 @@
             </div>
         </div>
     </div>
+  </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script>
      
